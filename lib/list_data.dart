@@ -5,6 +5,7 @@ import 'package:flutter_demo/demo2_state_manager.dart';
 import 'package:flutter_demo/demo3_response.dart';
 import 'package:flutter_demo/demo4_navigator.dart';
 import 'package:flutter_demo/demo5_animat.dart';
+import 'package:flutter_demo/demo6_drawer.dart';
 
 class ListData {
   String title;
@@ -27,6 +28,7 @@ class ListData {
     datas.add(ListData("更改小部件以响应输入", ResponseLayout()));
     datas.add(ListData("关于导航的Demo", NavigatorLayout()));
     datas.add(ListData("关于动画的Demo", AnimationLayout()));
+    datas.add(ListData("关于drawer的Demo", DrawerLayoutDemo()));
     return datas;
   }
 
