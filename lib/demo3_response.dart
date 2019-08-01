@@ -16,14 +16,15 @@ class ResponseLayout extends StatelessWidget {
             Counter(),
             Counter2(),
             MaterialButton(
-              // ignore: use_of_void_result
-              onPressed: ListData.pushPage(context,ShoppingList(
-                products: <Product>[
-                  Product(name: 'Eggs'),
-                  Product(name: 'Flour'),
-                  Product(name: 'Chocolate chips'),
-                ],
-              )),
+              onPressed: (){
+                ListData.pushPage(context,ShoppingList(
+                  products: <Product>[
+                    Product(name: 'Eggs'),
+                    Product(name: 'Flour'),
+                    Product(name: 'Chocolate chips'),
+                  ],
+                ));
+              },
               child: Text("购物车的例子"),)
           ],
         ),

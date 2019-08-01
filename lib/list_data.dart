@@ -3,6 +3,7 @@ import 'package:flutter_demo/demo0_list.dart';
 import 'package:flutter_demo/demo1_layout.dart';
 import 'package:flutter_demo/demo2_state_manager.dart';
 import 'package:flutter_demo/demo3_response.dart';
+import 'package:flutter_demo/demo4_navigator.dart';
 
 class ListData {
   String title;
@@ -23,6 +24,7 @@ class ListData {
     datas.add(ListData("关于布局控件的使用(注意图片的显示fitBox和加载)", Demo1Layout()));
     datas.add(ListData("关于state的管理Demo", StateDemoLayout()));
     datas.add(ListData("更改小部件以响应输入", ResponseLayout()));
+    datas.add(ListData("关于导航的Demo", NavigatorLayout()));
     return datas;
   }
 
@@ -37,7 +39,7 @@ class ListData {
     );
   }
 
-  static void pushPage(BuildContext context,Widget widget){
+  static pushPage(BuildContext context,Widget widget){
       Navigator.of(context).push(MaterialPageRoute(builder: (context){
         return widget;
       }));
