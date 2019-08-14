@@ -24,7 +24,7 @@ class AnimationLayout extends StatelessWidget {
               )),
           ListData.createTitleLayout(
               "使用AnimatedWidget 实现动画(还是拿到animation对象去更新ui) "
-              "AnimatedWidget(基类)中会自动调用addListener()和setState()",
+                  "AnimatedWidget(基类)中会自动调用addListener()和setState()",
               RaisedButton(
                 onPressed: () {
                   ListData.pushPage(context, LogoAnimationLayout1());
@@ -33,7 +33,7 @@ class AnimationLayout extends StatelessWidget {
               )),
           ListData.createTitleLayout(
               "使用AnimatedBuilder 进行职责分离 相当于动画容器 外部传递View进去"
-              "自动监听来自Animation对象的通知，并根据需要将该控件树标记为脏(dirty)，因此不需要手动调用addListener()。",
+                  "自动监听来自Animation对象的通知，并根据需要将该控件树标记为脏(dirty)，因此不需要手动调用addListener()。",
               RaisedButton(
                 onPressed: () {
                   ListData.pushPage(context, LogoAnimationLayout2());
@@ -340,12 +340,12 @@ class DraggableCardState extends State<DraggableCard>
   @override
   void initState() {
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 1))
-          ..addListener(() {
-            setState(() {
-              _dragAlignment = _animation.value;
-            });
-          });
+    AnimationController(vsync: this, duration: Duration(seconds: 1))
+      ..addListener(() {
+        setState(() {
+          _dragAlignment = _animation.value;
+        });
+      });
     _updateAnimation();
     super.initState();
   }
@@ -434,7 +434,7 @@ class AnimatedContainerAppState extends State<AnimatedContainerApp> {
             width: _width,
             height: _height,
             decoration:
-                BoxDecoration(color: _color, borderRadius: _borderRadius),
+            BoxDecoration(color: _color, borderRadius: _borderRadius),
             duration: Duration(seconds: 1),
             curve: Curves.fastOutSlowIn,
           ),

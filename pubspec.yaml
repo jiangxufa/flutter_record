@@ -24,6 +24,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   english_words: ^3.1.0
+  http: ^0.12.0+1
+  url_launcher: ^4.0.1
+  extended_text: ^0.6.4
+  pull_to_refresh: ^1.5.3
+  toast: ^0.1.5
 
 dev_dependencies:
   flutter_test:
@@ -43,6 +48,10 @@ flutter:
 
   assets:
     - images/lake.jpg
+    - images/btn_increase_default.png
+    - images/btn_increase_pressed.png
+    - images/btn_reduce_fault.png
+    - images/btn_reduce_pressed.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg

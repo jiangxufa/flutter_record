@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/demo0_list.dart';
+import 'package:flutter_demo/demo10_page_%20parallax.dart';
+import 'package:flutter_demo/demo11_bottom_sheet.dart';
+import 'package:flutter_demo/demo12_animat_y.dart';
 import 'package:flutter_demo/demo1_layout.dart';
 import 'package:flutter_demo/demo2_state_manager.dart';
 import 'package:flutter_demo/demo3_response.dart';
 import 'package:flutter_demo/demo4_navigator.dart';
 import 'package:flutter_demo/demo5_animat.dart';
 import 'package:flutter_demo/demo6_drawer.dart';
+import 'package:flutter_demo/demo7_SliverAppBar.dart';
+import 'package:flutter_demo/demo7_launcher.dart';
+import 'package:flutter_demo/demo8_d.dart';
+import 'package:flutter_demo/demo9_page_view.dart';
+import 'package:flutter_demo/feixiu/feixiu_page.dart';
+import 'package:flutter_demo/feixiu/part_car_page.dart';
+import 'package:flutter_demo/feixiu/part_fragment.dart';
+import 'package:flutter_demo/feixiu/part_page.dart';
 
 class ListData {
   String title;
@@ -29,6 +40,18 @@ class ListData {
     datas.add(ListData("关于导航的Demo", NavigatorLayout()));
     datas.add(ListData("关于动画的Demo", AnimationLayout()));
     datas.add(ListData("关于drawer的Demo", DrawerLayoutDemo()));
+    datas.add(ListData("浮动应用栏", SliverAppBarDemo()));
+    datas.add(ListData("封装控件", FeixiuPage()));
+    datas.add(ListData("launcher", LauncherPage()));
+    datas.add(ListData("launcher", HahaPage()));
+    datas.add(ListData("PartPage", PartPage()));
+    datas.add(ListData("PageApp", PageApp()));
+    datas.add(ListData("PageFragment", PageFragment(null)));
+    datas.add(ListData("PageDemo", PageDemo()));
+    datas.add(ListData("BottomSheetPage", BottomSheetPage()));
+    datas.add(ListData("PartCarPage", PartCarPage()));
+    datas.add(ListData("AnimatY", TranslateAnimation()));
+    datas.add(ListData("AnimatY", AnimatY()));
     return datas;
   }
 
