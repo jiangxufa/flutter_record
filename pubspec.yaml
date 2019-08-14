@@ -29,6 +29,8 @@ dependencies:
   extended_text: ^0.6.4
   pull_to_refresh: ^1.5.3
   toast: ^0.1.5
+  # 用来实现报价页的选择分类
+  sticky_headers: ^0.1.8
 
 dev_dependencies:
   flutter_test:

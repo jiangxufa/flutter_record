@@ -12,6 +12,7 @@ class AnimatY extends StatefulWidget {
 class AnimatYState extends State<AnimatY> with SingleTickerProviderStateMixin {
   AnimationController controller;
   Animation<Matrix4> animation;
+  Animation<double> doubleAnimation;
 
   @override
   void initState() {
@@ -21,10 +22,30 @@ class AnimatYState extends State<AnimatY> with SingleTickerProviderStateMixin {
       ..addListener(() {
         setState(() {
           //动画执行的时候 可以看法到疯狂的回调(用来刷新ui)
-          print("addListener");
+//          print("addListener");
         });
+      })
+      /// 使用forward  回调  forward->completed  使用reverse reverse->dismissed
+      ..addStatusListener((AnimationStatus status) {
+        switch (status) {
+          case AnimationStatus.dismissed:
+            print("dismissed");
+            break;
+          case AnimationStatus.forward:
+            print("forward");
+            break;
+          case AnimationStatus.reverse:
+            print("reverse");
+            break;
+          case AnimationStatus.completed:
+            print("completed");
+            break;
+        }
       });
-    animation = new Matrix4Tween(begin: Matrix4.translationValues(0, 300, 0),end: Matrix4.translationValues(0, 0, 0))
+    doubleAnimation = CurvedAnimation(parent: controller, curve: Curves.easeIn);
+    animation = new Matrix4Tween(
+            begin: Matrix4.translationValues(0, 300, 0),
+            end: Matrix4.translationValues(0, 0, 0))
         .animate(controller);
   }
 
@@ -37,24 +58,15 @@ class AnimatYState extends State<AnimatY> with SingleTickerProviderStateMixin {
         height: 700,
         child: Stack(
           children: <Widget>[
-            Positioned(
-              top: 0,
-              left: 0,
-              child: RaisedButton(
-                onPressed: () {
-                  controller.forward();
-                },
-                child: Text("点击1"),
-              ),
-            ),
-            Positioned(
-              top: 0,
-              right: 0,
-              child: RaisedButton(
-                onPressed: () {
+            FadeTransition(
+              opacity: controller,
+              child: GestureDetector(
+                onTap: (){
                   controller.reverse();
                 },
-                child: Text("点击2"),
+                child: Container(
+                  color: Colors.grey,
+                ),
               ),
             ),
             Positioned(
@@ -75,7 +87,27 @@ class AnimatYState extends State<AnimatY> with SingleTickerProviderStateMixin {
                   height: 60,
                   width: size.width,
                   color: Colors.lightGreen,
-                ))
+                )),
+            Positioned(
+              top: 0,
+              left: 0,
+              child: RaisedButton(
+                onPressed: () {
+                  controller.forward();
+                },
+                child: Text("点击1"),
+              ),
+            ),
+            Positioned(
+              top: 0,
+              right: 0,
+              child: RaisedButton(
+                onPressed: () {
+                  controller.reverse();
+                },
+                child: Text("点击2"),
+              ),
+            ),
           ],
         ),
       ),
@@ -123,13 +155,7 @@ class _TranslateAnimationState extends State<TranslateAnimation>
           margin: animation.value,
           child: FlutterLogo(
             size: 50,
-          )) /*Padding(
-        padding: animation.value,
-        child: FlutterLogo(
-          size: 50.0,
-        ),
-      )*/
-      ,
+          )),
     );
   }
 }

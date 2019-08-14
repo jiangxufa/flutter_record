@@ -3,6 +3,8 @@ import 'package:flutter_demo/demo0_list.dart';
 import 'package:flutter_demo/demo10_page_%20parallax.dart';
 import 'package:flutter_demo/demo11_bottom_sheet.dart';
 import 'package:flutter_demo/demo12_animat_y.dart';
+import 'package:flutter_demo/demo13_bottom_sheet_part.dart';
+import 'package:flutter_demo/demo14_car_animat.dart';
 import 'package:flutter_demo/demo1_layout.dart';
 import 'package:flutter_demo/demo2_state_manager.dart';
 import 'package:flutter_demo/demo3_response.dart';
@@ -52,6 +54,9 @@ class ListData {
     datas.add(ListData("PartCarPage", PartCarPage()));
     datas.add(ListData("AnimatY", TranslateAnimation()));
     datas.add(ListData("AnimatY", AnimatY()));
+    datas.add(ListData("PartBottomSheetPage", PartBottomSheetPage()));
+    datas.add(ListData("CarAnimatDemo", CarAnimatDemo()));
+    datas.add(ListData("CarAnimatDemoState1", CarAnimatDemo1()));
     return datas;
   }
 
