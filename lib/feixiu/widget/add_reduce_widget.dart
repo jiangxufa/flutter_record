@@ -3,7 +3,8 @@ import 'package:flutter_demo/feixiu/widget/part_item.dart';
 
 class AddReduceLayout extends StatelessWidget {
   final Part _part;
-  final OnAddReduceClickListener _listener;
+  final AddReduceClickListener _listener;
+  GlobalKey anchorKey = GlobalKey();
 
   AddReduceLayout(this._part, this._listener);
 
@@ -47,6 +48,7 @@ class AddReduceLayout extends StatelessWidget {
             ),
           ),
           IconButton(
+              key: anchorKey,
               padding: EdgeInsetsDirectional.zero,
               icon: Image.asset(
                 "images/btn_increase_default.png",
@@ -55,6 +57,10 @@ class AddReduceLayout extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               onPressed: () {
+                RenderBox renderBox = anchorKey.currentContext.findRenderObject();
+                //左上角
+                var offset = renderBox.localToGlobal(Offset.zero);
+                _listener.onAddPosition(offset);
                 _listener.onAddClick();
               }),
         ],
@@ -67,12 +73,17 @@ class AddReduceLayout extends StatelessWidget {
       width: 100,
       alignment: Alignment.centerRight,
       child: IconButton(
+          key: anchorKey,
           icon: Image.asset(
             "images/btn_increase_default.png",
             width: 44,
             height: 44,
           ),
           onPressed: () {
+            RenderBox renderBox = anchorKey.currentContext.findRenderObject();
+            //左上角
+            var offset = renderBox.localToGlobal(Offset.zero);
+            _listener.onAddPosition(offset);
             _listener.onAddClick();
           }),
     );

@@ -54,6 +54,7 @@ flutter:
     - images/btn_increase_pressed.png
     - images/btn_reduce_fault.png
     - images/btn_reduce_pressed.png
+    - images/new_icon_box_close.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg

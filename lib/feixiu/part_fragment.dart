@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/demo9_page_view.dart';
 import 'package:flutter_demo/feixiu/part_page.dart';
+import 'package:flutter_demo/feixiu/widget/part_item.dart';
 
 class PageFragment extends StatefulWidget {
-
   GlobalKey<ScaffoldState> _scaffoldKey;
+ final VoidCallback onPressed;
+ final AddReduceClickListener listener;
 
-  PageFragment(this._scaffoldKey);
+  PageFragment(this._scaffoldKey, this.onPressed,{this.listener});
 
   @override
   State<StatefulWidget> createState() {
@@ -39,8 +41,8 @@ class PageFragmentState extends State<PageFragment>
         onPageChange(mTabController.index, p: mPageController);
       }
     });
-    pageDatas = List.generate(20, (int index){
-      return PartPage();
+    pageDatas = List.generate(20, (int index) {
+      return PartPage(listener: widget.listener,);
     }).toList();
   }
 
@@ -61,30 +63,10 @@ class PageFragmentState extends State<PageFragment>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      appBar: AppBar(
-//        title: Text("标题"),
-//      ),
       key: widget._scaffoldKey,
-//      bottomSheet: Container(height: 100,color: Colors.lightGreen,),
       body: Column(
         children: <Widget>[
-          Container(
-            color: new Color(0xfff4f5f6),
-            height: 38.0,
-            child: TabBar(
-              isScrollable: true,
-              //是否可以滚动
-              controller: mTabController,
-              labelColor: Colors.lightGreen,
-              unselectedLabelColor: Color(0xff666666),
-              labelStyle: TextStyle(fontSize: 16.0),
-              tabs: tabList.map((item) {
-                return Tab(
-                  text: item.title,
-                );
-              }).toList(),
-            ),
-          ),
+          _buildTabContainer(),
           Expanded(
             child: PageView.builder(
               itemCount: tabList.length,
@@ -104,6 +86,54 @@ class PageFragmentState extends State<PageFragment>
       ),
     );
   }
+
+  _buildTabContainer() => Container(
+        height: 38,
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: TabBar(
+                isScrollable: true,
+                //是否可以滚动
+                controller: mTabController,
+                labelColor: Colors.lightGreen,
+                unselectedLabelColor: Color(0xff666666),
+                labelStyle: TextStyle(fontSize: 16.0,color: Colors.black38),
+                tabs: tabList.map((item) {
+                  return Tab(
+                    text: item.title,
+                  );
+                }).toList(),
+              ),
+            ),
+            _buildTabRight()
+          ],
+        ),
+      );
+
+  _buildTabRight() => Container(
+        height: 38,
+        child: GestureDetector(
+          onTap: widget.onPressed,
+          child: Padding(
+            padding: EdgeInsets.only(left: 2, right: 2),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(
+                  Icons.list,
+                  color: Colors.lightGreen,
+                ),
+                Text(
+                  "更多",
+                  style: TextStyle(color: Colors.lightGreen, fontSize: 16),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
 
   onPageChange(int index, {PageController p, TabController t}) async {
     if (p != null) {

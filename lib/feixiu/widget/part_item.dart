@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_demo/feixiu/widget/add_reduce_widget.dart';
 
 class PartItem extends StatefulWidget {
-  final Part part ;
+  final Part part;
 
-  PartItem({this.part});
+  final AddReduceClickListener listener;
+
+  PartItem({this.part, this.listener});
 
   @override
   State<StatefulWidget> createState() {
@@ -13,15 +15,14 @@ class PartItem extends StatefulWidget {
   }
 }
 
-class PartItemState extends State<PartItem> with OnAddReduceClickListener {
-
+class PartItemState extends State<PartItem> with AddReduceClickListener {
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(16.0, 4.0, 8.0, 4.0),
       width: double.infinity,
-      decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey))),
-//      color: Colors.grey,
+      decoration:
+          BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey))),
       constraints: BoxConstraints(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -29,14 +30,13 @@ class PartItemState extends State<PartItem> with OnAddReduceClickListener {
         children: <Widget>[
           Expanded(
               child: Container(
-//                color: Colors.lightGreen,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[_buildTitleLine(), _buildContentLine()],
-                ),
-              )),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[_buildTitleLine(), _buildContentLine()],
+            ),
+          )),
           AddReduceLayout(widget.part, this)
         ],
       ),
@@ -53,28 +53,37 @@ class PartItemState extends State<PartItem> with OnAddReduceClickListener {
   @override
   void onAddClick() {
     print("onAddClick");
-    setState(() {
-      widget.part.num++;
-    });
+    widget.part.num++;
+    setState(() {});
+    widget.listener.onAddClick();
   }
 
   @override
-  void onCountClick() {}
+  void onCountClick() {
+    widget.listener.onCountClick();
+  }
 
   @override
   void onReduceClick() {
     print("onReduceClick");
-    setState(() {
-      if (widget.part.num > 1) {
-        widget.part.num--;
-      } else {
-        widget.part.num = 0;
-      }
-    });
+    if (widget.part.num > 1) {
+      widget.part.num--;
+    } else {
+      widget.part.num = 0;
+    }
+    setState(() {});
+    widget.listener.onReduceClick();
   }
 
   @override
-  void onRemove() {}
+  void onRemove() {
+    widget.listener.onRemove();
+  }
+
+  @override
+  void onAddPosition(Offset offset) {
+    widget.listener.onAddPosition(offset);
+  }
 
   Widget _buildTitleLine() {
     return Padding(
@@ -144,7 +153,7 @@ class Part {
   Part(this.num);
 }
 
-abstract class OnAddReduceClickListener {
+abstract class AddReduceClickListener {
   void onAddClick();
 
   void onReduceClick();
@@ -152,4 +161,6 @@ abstract class OnAddReduceClickListener {
   void onCountClick();
 
   void onRemove();
+
+  void onAddPosition(Offset offset);
 }

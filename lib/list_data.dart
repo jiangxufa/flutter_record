@@ -15,6 +15,8 @@ import 'package:flutter_demo/demo7_SliverAppBar.dart';
 import 'package:flutter_demo/demo7_launcher.dart';
 import 'package:flutter_demo/demo8_d.dart';
 import 'package:flutter_demo/demo9_page_view.dart';
+import 'package:flutter_demo/feixiu/add_page.dart';
+import 'package:flutter_demo/feixiu/bottom_car_layout.dart';
 import 'package:flutter_demo/feixiu/feixiu_page.dart';
 import 'package:flutter_demo/feixiu/part_car_page.dart';
 import 'package:flutter_demo/feixiu/part_fragment.dart';
@@ -48,7 +50,7 @@ class ListData {
     datas.add(ListData("launcher", HahaPage()));
     datas.add(ListData("PartPage", PartPage()));
     datas.add(ListData("PageApp", PageApp()));
-    datas.add(ListData("PageFragment", PageFragment(null)));
+    datas.add(ListData("PageFragment", PageFragment(null,(){})));
     datas.add(ListData("PageDemo", PageDemo()));
     datas.add(ListData("BottomSheetPage", BottomSheetPage()));
     datas.add(ListData("PartCarPage", PartCarPage()));
@@ -57,6 +59,8 @@ class ListData {
     datas.add(ListData("PartBottomSheetPage", PartBottomSheetPage()));
     datas.add(ListData("CarAnimatDemo", CarAnimatDemo()));
     datas.add(ListData("CarAnimatDemoState1", CarAnimatDemo1()));
+    datas.add(ListData("BottomCarLayout", BottomCarLayout()));
+    datas.add(ListData("AddPage", AddPage()));
     return datas;
   }
 

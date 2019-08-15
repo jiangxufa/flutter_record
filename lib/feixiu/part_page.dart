@@ -6,6 +6,11 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:toast/toast.dart';
 
 class PartPage extends StatefulWidget {
+
+  final AddReduceClickListener listener;
+
+  const PartPage({Key key, this.listener}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return PartPageState();
@@ -41,18 +46,16 @@ class PartPageState extends State<PartPage>
   }
 
   Widget _buildSucPage() {
-//    if(sucWidget == null){
       sucWidget = BaseRefreshPage(
         child: ListView.builder(
           itemBuilder: (BuildContext context, int index) {
-            return PartItem(part: list[index]);
+            return PartItem(part: list[index],listener: widget?.listener,);
           },
           itemCount: itemCount,
         ),
         listener: this,
         refreshController: controller,
       );
-//    }
     return sucWidget;
   }
 

@@ -29,7 +29,7 @@ class PartCarPageState extends State<PartCarPage> {
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(bottom: 64),
-            child: PageFragment(_scaffoldKey),
+            child: PageFragment(_scaffoldKey,(){}),
           ),
           Positioned(
               bottom: 0,
